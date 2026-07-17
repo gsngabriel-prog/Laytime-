@@ -1,200 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>FOR-000313 - Laytime Toras e Carga Geral</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<style>
-  body { font-family: Arial, sans-serif; background:#f2f2f2; margin:0; padding:20px; }
-  #folha { background:#fff; max-width:1100px; margin:auto; padding:20px 25px; box-shadow:0 0 8px rgba(0,0,0,0.15); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laytime — Formulário</title>
 
-  .cabecalho { display:flex; justify-content:space-between; align-items:flex-start; font-size:11px; border-bottom:2px solid #000; padding-bottom:6px; margin-bottom:10px; }
-  .cabecalho .titulo { text-align:center; flex:1; }
-  .cabecalho .titulo h1 { font-size:15px; margin:0; }
-  .cabecalho .titulo h2 { font-size:12px; margin:2px 0 0 0; font-weight:normal; }
-  .cabecalho .versao { text-align:right; white-space:nowrap; font-weight:bold; }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  .linha { display:flex; flex-wrap:wrap; gap:25px; margin-bottom:6px; }
-  .campo { font-size:13px; }
-  .campo label { font-weight:bold; margin-right:5px; }
-  .campo input { padding:3px; font-size:13px; border:none; border-bottom:1px solid #000; background:transparent; }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background: #20252b;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-  .corpo { display:flex; gap:20px; margin-top:15px; }
-  .coluna-tabela { flex:1.4; }
-  .coluna-codigos { flex:1; border-left:1px solid #999; padding-left:15px; }
+    header {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px;
+      background: #111820;
+      color: white;
+    }
 
-  table { width:100%; border-collapse: collapse; }
-  th, td { border:1px solid #999; padding:5px; font-size:12px; text-align:center; }
-  th { background:#eee; }
-  td input { width:90%; border:none; font-size:12px; text-align:center; background:transparent; }
-  td.obs input { text-align:left; }
+    header strong {
+      font-size: 18px;
+    }
 
-  .codigos-titulo { font-weight:bold; font-size:12px; margin-bottom:6px; }
-  .codigos ul { list-style:none; padding:0; margin:0; font-size:11.5px; line-height:1.55; }
+    header a {
+      padding: 9px 12px;
+      border-radius: 5px;
+      background: #238636;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      white-space: nowrap;
+    }
 
-  .rodape { margin-top:15px; }
-  .campo-cotas label { font-weight:bold; font-size:13px; }
-  .campo-cotas input { border:none; border-bottom:1px solid #000; font-size:13px; width:50%; margin-left:5px; }
+    main {
+      width: 100%;
+      height: calc(100vh - 58px);
+      background: #555;
+    }
 
-  .matriculas { display:grid; grid-template-columns:1fr 1fr; gap:8px 40px; margin-top:15px; }
-  .matriculas .campo input { border:none; border-bottom:1px solid #000; width:70%; margin-left:5px; }
+    iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: white;
+    }
 
-  .autorizacao { margin-top:15px; }
-  .autorizacao label { font-weight:bold; font-size:13px; }
-  .autorizacao input { border:none; border-bottom:1px solid #000; width:50%; margin-left:5px; }
+    @media (max-width: 600px) {
+      header {
+        min-height: 52px;
+        padding: 8px 10px;
+      }
 
-  .botoes { text-align:center; margin-bottom:15px; }
-  button { padding:8px 16px; margin:5px; border:none; border-radius:5px; background:#2563eb; color:#fff; font-size:14px; cursor:pointer; }
+      header strong {
+        font-size: 14px;
+      }
 
-  @media print {
-    .botoes { display:none; }
-  }
-</style>
+      header a {
+        padding: 8px 9px;
+        font-size: 12px;
+      }
+
+      main {
+        height: calc(100vh - 52px);
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="botoes" id="botoesTopo">
-  <button onclick="gerarPDF()">Gerar PDF</button>
-</div>
+  <header>
+    <strong>Laytime — Formulário original</strong>
 
-<div id="folha">
+    <a
+      href="./Laytime_20260717.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Abrir PDF
+    </a>
+  </header>
 
-  <div class="cabecalho">
-    <div style="width:120px;"></div>
-    <div class="titulo">
-      <h1>FORMULÁRIO DO SISTEMA DE GESTÃO INTEGRADA</h1>
-      <h2>Laytime Toras e Carga Geral- Operação Portuária</h2>
-    </div>
-    <div class="versao">VERSÃO: 5.00<br>FOR-000313</div>
-  </div>
-
-  <div class="linha">
-    <div class="campo"><label>NAVIO:</label><input type="text" size="20"></div>
-    <div class="campo"><label>TERNO:</label><input type="text" size="10"></div>
-    <div class="campo"><label>RÁDIOS:</label><input type="text" size="10"></div>
-  </div>
-
-  <div class="corpo">
-    <div class="coluna-tabela">
-      <table id="tabela">
-        <thead>
-          <tr>
-            <th style="width:15%;">CÓDIGO</th>
-            <th style="width:15%;">INICIO</th>
-            <th style="width:15%;">FIM</th>
-            <th>OBSERVAÇÕES</th>
-          </tr>
-        </thead>
-        <tbody id="corpoTabela"></tbody>
-      </table>
-
-      <div class="linha" style="margin-top:15px;">
-        <div class="campo"><label>DATA:</label><input type="date"></div>
-        <div class="campo"><label>PERÍODO:</label><input type="text" size="12"></div>
-        <div class="campo"><label>RESPONSÁVEL:</label><input type="text" size="20"></div>
-      </div>
-
-      <div class="linha">
-        <div class="campo"><label>GUINCHEIRO:</label><input type="text" size="15"></div>
-        <div class="campo"><label>GUINCHO:</label><input type="text" size="10"></div>
-        <div class="campo"><label>PORÃO:</label><input type="text" size="10"></div>
-      </div>
-
-      <div class="rodape campo-cotas">
-        <label>Cotas</label><input type="text">
-      </div>
-
-      <div class="matriculas">
-        <div class="campo"><label>Matrícula:</label><input type="text"></div>
-        <div class="campo"><label>Matrícula:</label><input type="text"></div>
-        <div class="campo"><label>Matrícula:</label><input type="text"></div>
-        <div class="campo"><label>Matrícula:</label><input type="text"></div>
-        <div class="campo"><label>Matrícula:</label><input type="text"></div>
-        <div class="campo"><label>Matrícula:</label><input type="text"></div>
-      </div>
-
-      <div class="autorizacao">
-        <label>Autorização do gestor:</label><input type="text">
-      </div>
-    </div>
-
-    <div class="coluna-codigos codigos">
-      <div class="codigos-titulo">CÓDIGOS (# OBSERV. OBRIGATÓRIA)</div>
-      <ul>
-        <li>1 - CARREGANDO</li>
-        <li>2 - DESCARREGANDO</li>
-        <li>3 - DDS</li>
-        <li>4 - INTRAJORNADA (INTERVALO)</li>
-        <li>5 - AGUARDANDO CAMINHÃO #</li>
-        <li>6 - AGUARDANDO ESTIVADORES</li>
-        <li>7 - AGUARDANDO TRIPULAÇÃO/NAVIO #</li>
-        <li>8 - ABERTURA DE PORÃO</li>
-        <li>9 - FECHAMENTO DE PORÃO</li>
-        <li>10 - INSPEÇÃO DE PORÃO</li>
-        <li>11 - PREPARAÇÃO DE PORÃO</li>
-        <li>12 - TROCA DE PORÃO</li>
-        <li>13 - RESTRIÇÃO CLIMÁTICA #</li>
-        <li>14 - MANUTENÇÃO DE GUINCHO #</li>
-        <li>15 - TROCA DE GUINCHO</li>
-        <li>16 - PREPARO DE MATERIAL DE IÇAMENTO</li>
-        <li>17 - TROCA DE MATERIAL DE IÇAMENTO</li>
-        <li>18 - REVISÃO DE PLANO</li>
-        <li>19 - AJUSTE DE CARGA A BORDO</li>
-        <li>20 - REMOÇÃO DE AVARIA</li>
-        <li>21 - LASHING</li>
-        <li>22 - PARADA PARA REFEIÇÃO</li>
-        <li>23 - TERNO DISPENSADO</li>
-        <li>24 - MANUTENÇÃO DE SPREADER/LL #</li>
-        <li>25 - CARREGANDO MÁQUINA</li>
-        <li>26 - DESCARREGANDO MÁQUINA</li>
-        <li>27 - ABASTECENDO MÁQUINA</li>
-        <li>28 - MANUTENÇÃO DE MÁQUINA #</li>
-        <li>29 - TROCA DE ESTIVA</li>
-        <li>30 - OUTROS #</li>
-        <li>31 - MANUTENÇÃO SHIPLOADER #</li>
-        <li>32 - INSPEÇÃO DE NAVIO #</li>
-        <li>33 -FALTA DE ENERGIA NO TERMINAL</li>
-        <li>34 - AGUARDANDO DRAFT</li>
-      </ul>
-    </div>
-  </div>
-
-</div>
-
-<script>
-function criarLinha() {
-  const linha = document.createElement('tr');
-  linha.innerHTML = `
-    <td><input type="text"></td>
-    <td><input type="time"></td>
-    <td><input type="time"></td>
-    <td class="obs"><input type="text"></td>
-  `;
-  return linha;
-}
-
-const QUANTIDADE_DE_LINHAS = 17;
-const corpoTabela = document.getElementById('corpoTabela');
-for (let i = 0; i < QUANTIDADE_DE_LINHAS; i++) {
-  corpoTabela.appendChild(criarLinha());
-}
-
-function gerarPDF() {
-  document.getElementById('botoesTopo').style.display = 'none';
-  const elemento = document.getElementById('folha');
-  const nomeArquivo = `Laytime_${new Date().toISOString().slice(0,10)}.pdf`;
-
-  html2pdf().set({
-    margin: 8,
-    filename: nomeArquivo,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-  }).from(elemento).save().then(() => {
-    document.getElementById('botoesTopo').style.display = 'block';
-  });
-}
-</script>
+  <main>
+    <iframe
+      src="./Laytime_20260717.pdf#view=FitH"
+      title="Formulário Laytime"
+    ></iframe>
+  </main>
 
 </body>
 </html>
